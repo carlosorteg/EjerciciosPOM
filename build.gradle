@@ -1,0 +1,43 @@
+repositories {
+    mavenCentral()
+}
+apply plugin: 'java'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.60")
+    }
+}
+
+ext {
+    serenityVersion = '2.2.0'
+    serenityCucumberVersion = '2.2.0'
+}
+
+test {
+    systemProperty "cucumber.options", System.getProperty("cucumber.options")
+
+}
+
+dependencies {
+
+    implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+    testCompile "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
+    testCompile "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
+    testCompile('junit:junit:4.12')
+    testCompile('org.assertj:assertj-core:3.11.1')
+    testCompile('org.slf4j:slf4j-simple:1.7.25')
+    testCompile "net.serenity-bdd:serenity-screenplay-webdriver:$rootProject.ext.serenityVersion"
+
+    compile "net.serenity-bdd:serenity-ensure:$rootProject.ext.serenityVersion"
+    compile "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
+    compile "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
+    compile "net.serenity-bdd:serenity-cucumber5:$rootProject.ext.serenityCucumberVersion"
+    compile "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
+    compile "net.serenity-bdd:serenity-screenplay-webdriver:$rootProject.ext.serenityVersion"
+
+}
